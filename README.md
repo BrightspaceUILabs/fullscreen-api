@@ -77,6 +77,9 @@ Exit full screen mode (if toggled).
 
 ## Demo!
 
+When running the demo locally via `polymer serve`, you need to add a trailing `/` to the end of the component links in order to get them to render.
+For example, when directed to `http://127.0.0.1:8081/components/fullscreen-api` you will need to add a `/`.
+
 [Link](https://vguillou.github.io/webcomponents/fullscreen-api/demo/)
 
 [Iframe demo](https://vguillou.github.io/webcomponents/fullscreen-api/demo/iframe.html)
