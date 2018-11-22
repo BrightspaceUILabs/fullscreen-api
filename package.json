@@ -1,0 +1,54 @@
+{
+  "description": "_A simple Polymer based Web Component wrapper for the HTML5 full screen API._",
+  "keywords": [
+    "fullscreen",
+    "full-screen",
+    "full screen",
+    "fullscreen button",
+    "polymer",
+    "web-components",
+    "web-component",
+    "web components",
+    "web component",
+    "html5",
+    "html 5"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Brightspace/fullscreen-api.git"
+  },
+  "homepage": "https://github.com/Brightspace/fullscreen-api",
+  "name": "fullscreen-api",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "npm run lint:wc && npm run lint:js",
+    "lint:js": "eslint . --ext .js,.html test/**/*.js test/**/*.html demo/**/*.js demo/**/*.html",
+    "lint:wc": "polymer lint",
+    "start": "polymer serve",
+    "test": "npm run lint"
+  },
+  "license": "UNLICENSED",
+  "resolutions": {
+    "inherits": "2.0.3",
+    "samsam": "1.1.3",
+    "supports-color": "3.1.2",
+    "type-detect": "1.0.0"
+  },
+  "author": "Vincent Guillou <vin.guillou@gmail.com>",
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0",
+    "@polymer/iron-icon": "^3.0.0-pre.18",
+    "@polymer/iron-iconset-svg": "^3.0.0-pre.18",
+    "@polymer/paper-icon-button": "^3.0.0-pre.18"
+  },
+  "devDependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "@polymer/iron-component-page": "^3.0.0-pre.18",
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.18",
+    "@polymer/iron-icons": "^3.0.0-pre.18",
+    "@polymer/paper-styles": "^3.0.0-pre.18",
+    "@webcomponents/webcomponentsjs": "^2.2.0",
+    "babel-eslint": "^10.0.1",
+    "polymer-cli": "^1.9.1"
+  }
+}

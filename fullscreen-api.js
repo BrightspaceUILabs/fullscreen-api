@@ -1,7 +1,4 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="fullscreen-behavior.html">
-
-<!--
+/**
 A simple Polymer based Web Component wrapper for the HTML5 full screen API.
 
 It lets you define which element to display in full screen mode
@@ -21,34 +18,41 @@ The element also provides 2 read-only flags as attribute:
 
 Usage :
 
-    <template is="dom-bind">
-      <fullscreen-api id="fsapi" fullscreen-available="{{fullscreenAvailable}}"></fullscreen-api>
+	<template is="dom-bind">
+	  <fullscreen-api id="fsapi" fullscreen-available="{{fullscreenAvailable}}"></fullscreen-api>
 
-      <button type="button" onclick="goFullscreen()" hidden$="[[!fullscreenAvailable]]">Display this page in full screen mode</button>
+	  <button type="button" onclick="goFullscreen()" hidden$="[[!fullscreenAvailable]]">Display this page in full screen mode</button>
 
-      <div id="errorDiv" hidden$="[[fullscreenAvailable]]">
-        Your browser does not support the HTML5 full screen API... :(
-      </div>
-    </template>
+	  <div id="errorDiv" hidden$="[[fullscreenAvailable]]">
+		Your browser does not support the HTML5 full screen API... :(
+	  </div>
+	</template>
 
-    <script>
-      function goFullscreen() {
-        var fsapi = document.querySelector('#fsapi');
-        fsapi.toggleFullscreen();
-      }
-    </script>
+	<script>
+	  function goFullscreen() {
+		var fsapi = document.querySelector('#fsapi');
+		fsapi.toggleFullscreen();
+	  }
+	</script>
 
 @element fullscreen-api
 @blurb A simple Polymer based Web Component wrapper for the HTML5 full screen API.
 @homepage https://github.com/vguillou/fullscreen-api
 @demo demo/index.html
--->
-<script>
-  Polymer({
-    is: "fullscreen-api",
-    
-    behaviors: [
-      Polymer.FullscreenBehavior
-    ]
-  });
-</script>
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '../@polymer/polymer/polymer-legacy.js';
+
+import { FullscreenBehavior } from './fullscreen-behavior.js';
+import { Polymer } from '../@polymer/polymer/lib/legacy/polymer-fn.js';
+Polymer({
+  is: "fullscreen-api",
+  
+  behaviors: [
+	FullscreenBehavior
+  ]
+});
