@@ -12,33 +12,30 @@ If no `target` is set, the whole page (more specifically
 
 The element also provides 2 read-only flags as attribute:
 - `fullscreenAvailable`: set to `true` if the browser supports
-   HTML5's full screen API (Safari on iOS does not).
+	 HTML5's full screen API (Safari on iOS does not).
 - `fullscreen`: set to `true` if an element is currently displayed in
-   full screen mode.
+	 full screen mode.
 
 Usage :
 
 	<fullscreen-icon-button></fullscreen-icon-button>
 
-
 With custom icons (presuming the icon-set is correctly imported):
 
 	<fullscreen-icon-button icon="icons:thumb-up" icon-exit="icons:thumb-down"></fullscreen-icon-button>
 
-
 With styling (red background, white icon and ripple) :
 
 	<style is="custom-style">
-	  fullscreen-icon-button {
+		fullscreen-icon-button {
 		color: white;
 		--paper-icon-button-ink-color: white;
 		background-color: red;
 		border-radius: 50%;
-	  }
+		}
 	</style>
 
 	<fullscreen-icon-button></fullscreen-icon-button>
-
 
 ### Styling
 
@@ -52,11 +49,6 @@ style mixins and custom properties to style this button.
 
 @element fullscreen-icon-button
 @demo demo/index.html
-*/
-/*
-  FIXME(polymer-modulizer): the above comments were extracted
-  from HTML and may be out of place here. Review them and
-  then delete this comment!
 */
 import '../@polymer/polymer/polymer-legacy.js';
 
@@ -83,78 +75,78 @@ $_documentContainer.innerHTML = `<dom-module id="fullscreen-icon-button">
 			@apply(--)
 		}
 	</style>
-  <paper-icon-button id="pib" icon="[[_icon]]" alt$="[[alt]]" disabled$="[[disabled]]" noink="[[noink]]" toggles="" on-tap="toggleFullscreen"></paper-icon-button>
+	<paper-icon-button id="pib" icon="[[_icon]]" alt$="[[alt]]" disabled$="[[disabled]]" noink="[[noink]]" toggles="" on-tap="toggleFullscreen"></paper-icon-button>
 </template>
 
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);
 Polymer({
-  is: 'fullscreen-icon-button',
+	is: 'fullscreen-icon-button',
 
-  behaviors: [
-	FullscreenBehavior
-  ],
+	behaviors: [
+		FullscreenBehavior
+	],
 
-  observers: [
-	'_updateIcon(fullscreen)'
-  ],
+	observers: [
+		'_updateIcon(fullscreen)'
+	],
 
-  properties: {
-	/**
-	 * Icon prompting the user to go to full screen mode.
-	 * Specifies the icon name or index in the set of icons available in
-	 * the icon's icon set.
-	 */
-	icon: {
-	  type: String,
-	  value: undefined,
-	  observer: '_updateIcon'
+	properties: {
+		/**
+		 * Icon prompting the user to go to full screen mode.
+		 * Specifies the icon name or index in the set of icons available in
+		 * the icon's icon set.
+		 */
+		icon: {
+			type: String,
+			value: undefined,
+			observer: '_updateIcon'
+		},
+
+		/**
+		 * Icon prompting the user to exit full screen mode.
+		 * Specifies the icon name or index in the set of icons available in
+		 * the icon's icon set.
+		 */
+		iconExit: {
+			type: String,
+			value: undefined,
+			observer: '_updateIcon'
+		},
+
+		/**
+		 * Specifies the alternate text for the button, for accessibility.
+		 */
+		alt: {
+			type: String,
+			observer: '_altChanged'
+		},
+
+		/**
+		 * If true, the user cannot interact with this element.
+		 */
+		disabled: {
+			type: Boolean,
+			value: false,
+			notify: true
+		},
+
+		/**
+		 * If true, the element will not produce a ripple effect when
+		 * interacted with via the pointer.
+		 */
+		noink: {
+			type: Boolean
+		}
 	},
 
-	/**
-	 * Icon prompting the user to exit full screen mode.
-	 * Specifies the icon name or index in the set of icons available in
-	 * the icon's icon set.
-	 */
-	iconExit: {
-	  type: String,
-	  value: undefined,
-	  observer: '_updateIcon'
+	_updateIcon: function() {
+		this._icon = this.fullscreen ? this.iconExit || 'fullscreen:fullscreen-exit' :
+			this.icon || 'fullscreen:fullscreen';
 	},
 
-	/**
-	 * Specifies the alternate text for the button, for accessibility.
-	 */
-	alt: {
-	  type: String,
-	  observer: "_altChanged"
-	},
-
-	/**
-	 * If true, the user cannot interact with this element.
-	 */
-	disabled: {
-	  type: Boolean,
-	  value: false,
-	  notify: true
-	},
-
-	/**
-	 * If true, the element will not produce a ripple effect when
-	 * interacted with via the pointer.
-	 */
-	noink: {
-	  type: Boolean
+	_altChanged: function(newValue, oldValue) {
+		this.$.pib._altChanged(newValue, oldValue);
 	}
-  },
-
-  _updateIcon: function() {
-	this._icon = this.fullscreen ? this.iconExit || 'fullscreen:fullscreen-exit' :
-	  this.icon || 'fullscreen:fullscreen';
-  },
-
-  _altChanged: function(newValue, oldValue) {
-	this.$.pib._altChanged(newValue, oldValue);
-  }
 });
