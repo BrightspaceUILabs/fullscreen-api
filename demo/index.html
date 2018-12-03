@@ -1,238 +1,287 @@
 <!doctype html>
 <html>
 <head>
-  <title>fullscreen-api demo</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="msapplication-TileColor" content="#ff5722">
-  <meta name="theme-color" content="#ff5722">
+	<title>fullscreen-api demo</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="msapplication-TileColor" content="#ff5722">
+	<meta name="theme-color" content="#ff5722">
 	
-	<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-	<link rel="import" href="../../polymer/polymer.html">
-	<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-  <link rel="import" href="../../iron-icons/iron-icons.html">
-  <link rel="import" href="../../paper-styles/color.html">
-	<link rel="import" href="../fullscreen-api.html">
-	<link rel="import" href="../fullscreen-icon-button.html">
+	<script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+	<script type="module" src="../../@polymer/polymer/polymer-legacy.js"></script>
+	<script type="module" src="../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
+	<script type="module" src="../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
+	<script type="module" src="../../@polymer/iron-icons/iron-icons.js"></script>
+	<script type="module" src="../../@polymer/paper-styles/color.js"></script>
+	<script type="module" src="../fullscreen-api.js"></script>
+	<script type="module" src="../fullscreen-icon-button.js"></script>
 
-	<custom-style>
-		<style is="custom-style" include="demo-pages-shared-styles">
-			body {
-				font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-				margin: 0;
-				padding: 10px;
-				overflow-y: scroll;
-			}
-			#noFullscreenErrorMessage {
-				display: none;
-			}
-			.vertical-section-container {
-				max-width: 700px;
-			}
-		</style>
-	</custom-style>
+	<!-- FIXME(polymer-modulizer):
+		These imperative modules that innerHTML your HTML are
+		a hacky way to be sure that any mixins in included style
+		modules are ready before any elements that reference them are
+		instantiated, otherwise the CSS @apply mixin polyfill won't be
+		able to expand the underlying CSS custom properties.
+		See: https://github.com/Polymer/polymer-modulizer/issues/154
+		-->
+	<script type="module">
+		const $_documentContainer = document.createElement('template');
+
+		$_documentContainer.innerHTML = `<custom-style>
+				<style is="custom-style" include="demo-pages-shared-styles">
+					body {
+						font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+						margin: 0;
+						padding: 10px;
+						overflow-y: scroll;
+					}
+					#noFullscreenErrorMessage {
+						display: none;
+					}
+					.vertical-section-container {
+						max-width: 700px;
+					}
+				</style>
+			</custom-style>`;
+
+		document.body.appendChild($_documentContainer.content);
+	</script>
 </head>
 <body unresolved>
 
-  <div id="noFullscreenErrorMessage" class="vertical-section-container centered">
-    The HTML5 full screen API is unavailable.
-    <br/>
-    ( ᵒ̴̶̷̥́ _ᵒ̴̶̷̣̥̀ )
-    <br/>
-    <br/>
-    Either :
-    <ul>
-      <li>Your browser does not support it (Safari on iOS for instance)</li>
-      <li>This demo is embedded in an iframe that does not allow full screen mode.
-        <br/>It must have the 'allowfullscreen', 'webkitallowfullscreen' and/or 'mozallowfullscreen' attributes in order to work.
-        <br/><br/>
-        <a href="https://vguillou.github.io/webcomponents/fullscreen-api/demo/index.html" target="_blank">You can find the demo here (no iframe involved)</a> or <a href="https://vguillou.github.io/webcomponents/fullscreen-api/demo/iframe.html" target="_blank">a working iframe demo there.</a>
-      </li>
-    </ul>
-  </div>
+	<script type="module">
+		const $_documentContainer = document.createElement('template');
 
-	<div id="demoContainer" class="vertical-section-container centered">
+		$_documentContainer.innerHTML = `<div id="noFullscreenErrorMessage" class="vertical-section-container centered">
+	The HTML5 full screen API is unavailable.
+	<br>
+	( ᵒ̴̶̷̥́ _ᵒ̴̶̷̣̥̀ )
+	<br>
+	<br>
+	Either :
+	<ul>
+		<li>Your browser does not support it (Safari on iOS for instance)</li>
+		<li>This demo is embedded in an iframe that does not allow full screen mode.
+		<br>It must have the 'allowfullscreen', 'webkitallowfullscreen' and/or 'mozallowfullscreen' attributes in order to work.
+		<br><br>
+		<a href="https://vguillou.github.io/webcomponents/fullscreen-api/demo/index.html" target="_blank">You can find the demo here (no iframe involved)</a> or <a href="https://vguillou.github.io/webcomponents/fullscreen-api/demo/iframe.html" target="_blank">a working iframe demo there.</a>
+		</li>
+	</ul>
+	</div>`;
+
+		document.body.appendChild($_documentContainer.content);
+	</script>
+
+	<script type="module">
+		const $_documentContainer = document.createElement('template');
+
+		$_documentContainer.innerHTML = `<div id="demoContainer" class="vertical-section-container centered">
 
 		<h1>&lt;fullscreen-icon-button&gt;</h1>
 
 		<h3>The simplest &lt;fullscreen-icon-button&gt;, takes care of everything for you</h3>
-    <demo-snippet class="centered-demo">
-      <template>
-      	<fullscreen-icon-button title="fullscreen" tabindex="0"></fullscreen-icon-button>
-      </template>
-    </demo-snippet>
+	<demo-snippet>
+		<template>
+			<fullscreen-icon-button title="fullscreen" tabindex="0"></fullscreen-icon-button>
+		</template>
+	</demo-snippet>
 
-    <h3>&lt;fullscreen-icon-button&gt; can be styled using all the mixins from <a href="https://elements.polymer-project.org/elements/paper-icon-button">&lt;paper-icon-button&gt;</a></h3>
-    <demo-snippet class="centered-demo">
-      <template>
-        <style is="custom-style">
-	        fullscreen-icon-button.red,
-          fullscreen-icon-button.blue,
-          fullscreen-icon-button.giant {
-			    	margin: 16px;
-			    }
+	<h3>&lt;fullscreen-icon-button&gt; can be styled using all the mixins from <a href="https://elements.polymer-project.org/elements/paper-icon-button">&lt;paper-icon-button&gt;</a></h3>
+	<demo-snippet class="">
+		<template>
+		<style is="custom-style">
+			fullscreen-icon-button.red,
+			fullscreen-icon-button.blue,
+			fullscreen-icon-button.giant {
+				margin: 16px;
+			}
 
-          fullscreen-icon-button.red {
-          	color: var(--paper-red-500);
-          	--paper-icon-button-ink-color: var(--paper-red-500);
-          }
+			fullscreen-icon-button.red {
+				color: var(--paper-red-500);
+				--paper-icon-button-ink-color: var(--paper-red-500);
+			}
 
-          fullscreen-icon-button.blue {
-            color: white;
-				    background-color: var(--paper-light-blue-500);
-				    border-radius: 3px;
-				    padding: 2px;
-				  }
+			fullscreen-icon-button.blue {
+				color: white;
+				background-color: var(--paper-light-blue-500);
+				border-radius: 3px;
+				padding: 2px;
+			}
 
-          fullscreen-icon-button.giant {
-          	width: 100px;
-    				height: 100px;
-          }
-        </style>
+			fullscreen-icon-button.giant {
+				width: 100px;
+				height: 100px;
+			}
 
-        <fullscreen-icon-button class="red" title="fullscreen" tabindex="0" alt="fullscreen"></fullscreen-icon-button>
-        <fullscreen-icon-button class="blue" icon="icons:thumb-up" icon-exit="icons:thumb-down" title="fullscreen" tabindex="1" noink alt="fullscreen"></fullscreen-icon-button>
-        <fullscreen-icon-button class="giant" icon="icons:zoom-in" icon-exit="icons:zoom-out" title="fullscreen" tabindex="2" alt="fullscreen"></fullscreen-icon-button>
-      </template>
-    </demo-snippet>
+		</style>
 
-    <h3>&lt;fullscreen-icon-button&gt; and &lt;fullscreen-api&gt; can automatically find the element to be displayed full screen if you set a selector to their `target` attribute</h3>
-    <demo-snippet class="centered-demo">
-      <template>
-        <style is="custom-style">
-        	.imgWithButton {
-            width: 300px;
-            height: 200px;
-            position: relative;
-            background: black no-repeat 50% 50%/cover;
-          }
-          .imgWithButton:-webkit-full-screen {
-            width: 100%;
-            height: 100%;
-            background-size: contain;
-          }
-          .imgWithButton:-moz-full-screen {
-            width: 100%;
-            height: 100%;
-            background-size: contain;
-          }
-          .imgWithButton:-ms-fullscreen {
-            width: 100%;
-            height: 100%;
-            background-size: contain;
-          }
-          .imgWithButton:full-screen {
-            width: 100%;
-            height: 100%;
-            background-size: contain;
-          }
-          .imgWithButton:fullscreen {
-            width: 100%;
-            height: 100%;
-            background-size: contain;
-          }
-          .imgWithButton > fullscreen-icon-button {
-          	color: black;
-            --paper-icon-button-ink-color: black;
-            background-color: white;
-            border-radius: 50%;
-          	position: absolute;
-          	right: 8px;
-          	bottom: 8px;
-          }
-        </style>
+		<fullscreen-icon-button class="red" title="fullscreen" tabindex="0" alt="fullscreen"></fullscreen-icon-button>
+		<fullscreen-icon-button class="blue" icon="icons:thumb-up" icon-exit="icons:thumb-down" title="fullscreen" tabindex="1" noink="" alt="fullscreen"></fullscreen-icon-button>
+		<fullscreen-icon-button class="giant" icon="icons:zoom-in" icon-exit="icons:zoom-out" title="fullscreen" tabindex="2" alt="fullscreen"></fullscreen-icon-button>
+		</template>
+	</demo-snippet>
 
-        <div id="img1" class="imgWithButton" style="background-image: url('huelgoat.jpg');" alt="Huelgoat">
-          <fullscreen-icon-button target="#img1" title="fullscreen" tabindex="0" alt="fullscreen"></fullscreen-icon-button>
-        </div>
+	<h3>&lt;fullscreen-icon-button&gt; and &lt;fullscreen-api&gt; can automatically find the element to be displayed full screen if you set a selector to their \`target\` attribute</h3>
+	<demo-snippet class="">
+		<template>
+		<style is="custom-style">
+			.imgWithButton {
+				width: 300px;
+				height: 200px;
+				position: relative;
+				background: black no-repeat 50% 50%/cover;
+			}
+			.imgWithButton:-webkit-full-screen {
+				width: 100%;
+				height: 100%;
+				background-size: contain;
+			}
+			.imgWithButton:-moz-full-screen {
+				width: 100%;
+				height: 100%;
+				background-size: contain;
+			}
+			.imgWithButton:-ms-fullscreen {
+				width: 100%;
+				height: 100%;
+				background-size: contain;
+			}
+			.imgWithButton:full-screen {
+				width: 100%;
+				height: 100%;
+				background-size: contain;
+			}
+			.imgWithButton:fullscreen {
+				width: 100%;
+				height: 100%;
+				background-size: contain;
+			}
+			.imgWithButton > fullscreen-icon-button {
+				color: black;
+				--paper-icon-button-ink-color: black;
+				background-color: white;
+				border-radius: 50%;
+				position: absolute;
+				right: 8px;
+				bottom: 8px;
+			}
+		</style>
 
-        <div id="img2" class="imgWithButton" style="background-image: url('rotheneuf.jpg');" alt="Les rochers sculptés de Rothéneuf">
-  				<fullscreen-icon-button target="#img2" title="fullscreen" tabindex="1" alt="fullscreen"></fullscreen-icon-button>
-				</div>
-      </template>
-    </demo-snippet>
+		<div id="img1" class="imgWithButton" style="background-image: url('huelgoat.jpg');" alt="Huelgoat">
+			<fullscreen-icon-button target="#img1" title="fullscreen" tabindex="0" alt="fullscreen"></fullscreen-icon-button>
+		</div>
 
-    <h1>&lt;fullscreen-api&gt;</h1>
+		<div id="img2" class="imgWithButton" style="background-image: url('rotheneuf.jpg');" alt="Les rochers sculptés de Rothéneuf">
+			<fullscreen-icon-button target="#img2" title="fullscreen" tabindex="1" alt="fullscreen"></fullscreen-icon-button>
+		</div>
+		</template>
+	</demo-snippet>
 
-    <h3>&lt;fullscreen-api&gt; is not a dom module, thus offering you a lot of flexibility</h3>
-    <demo-snippet class="centered-demo">
-      <template>
-        <style is="custom-style">
-          img.demo {
-            width: 300px;
-            height: 200px;
-            margin: 10px;
-          }
-          img.demo:-webkit-full-screen {
-            width: 100%;
-            height: auto;
-          }
-          img.demo:-moz-full-screen {
-            width: 100%;
-            height: auto;
-          }
-          img.demo:-ms-fullscreen {
-            width: 100%;
-            height: auto;
-          }
-          img.demo:full-screen {
-            width: 100%;
-            height: auto;
-          }
-          img.demo:fullscreen {
-            width: 100%;
-            height: auto;
-          }
-        </style>
+	<h1>&lt;fullscreen-api&gt;</h1>
 
-        <fullscreen-api id="fsapi"></fullscreen-api>
+	<h3>&lt;fullscreen-api&gt; is not a dom module, thus offering you a lot of flexibility</h3>
+	<demo-snippet class="">
+		<template>
+		<style is="custom-style">
+			img.demo {
+			width: 300px;
+			height: 200px;
+			margin: 10px;
+			}
+			img.demo:-webkit-full-screen {
+			width: 100%;
+			height: auto;
+			}
+			img.demo:-moz-full-screen {
+			width: 100%;
+			height: auto;
+			}
+			img.demo:-ms-fullscreen {
+			width: 100%;
+			height: auto;
+			}
+			img.demo:full-screen {
+			width: 100%;
+			height: auto;
+			}
+			img.demo:fullscreen {
+			width: 100%;
+			height: auto;
+			}
+		</style>
 
-        <div>
-          <button type="button" onclick="pageFullscreen()">Toggle full screen</button>
+		<fullscreen-api id="fsapi"></fullscreen-api>
 
-          <div>
-            <img class="demo" src="ile-vierge.jpg" onclick="eventTargetFullscreen(event)" alt="L'île vierge">
-            <img class="demo" src="saint-michel.jpg" onclick="eventTargetFullscreen(event)" alt="Vue depuis le mont Saint-Michel de Saint-Rivoal">
-            <img class="demo" src="yeun-elez.jpg" onclick="eventTargetFullscreen(event)" alt="La vallée du Yeun-Elez">
-            <img class="demo" src="ploumanach.jpg" onclick="eventTargetFullscreen(event)" alt="Ploumanac'h">
-          </div>
-        </div>
+		<div>
+			<button id="button1" type="button">Toggle full screen</button>
 
-        <script>
-          // Toggle full screen mode for an element
-          function toggleFullscreen(element) {
-            var fsapi = document.querySelector('#fsapi');
-            fsapi.target = element;
-            fsapi.toggleFullscreen();
-          }
+			<div>
+				<img id="picture1" class="demo" src="ile-vierge.jpg" alt="L'île vierge">
+				<img id="picture2" class="demo" src="saint-michel.jpg" alt="Vue depuis le mont Saint-Michel de Saint-Rivoal">
+				<img id="picture3" class="demo" src="yeun-elez.jpg" alt="La vallée du Yeun-Elez">
+				<img id="picture4" class="demo" src="ploumanach.jpg" alt="Ploumanac'h">
+			</div>
+		</div>
+		</template>
+	</demo-snippet>
 
-          // Toggle full screen mode for the whole page
-          function pageFullscreen() {
-            toggleFullscreen(document.documentElement);
-          }
+	</div>`;
+		document.body.appendChild($_documentContainer.content);
+	</script>
 
-          // Toggle full screen mode for the event's target
-          function eventTargetFullscreen(event) {
-            toggleFullscreen(event.target);
-          }
-        </script>
-      </template>
-    </demo-snippet>
+	<script type="module">
+		import '../../@polymer/polymer/polymer-legacy.js';
+		import '../../@polymer/iron-demo-helpers/demo-snippet.js';
+		import '../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+		import '../../@polymer/iron-icons/iron-icons.js';
+		import '../../@polymer/paper-styles/color.js';
+		import '../fullscreen-api.js';
+		import '../fullscreen-icon-button.js';
+		// Detect HTML5 full screen compatibility and alert the user if not
+		if (!(document.fullscreenEnabled ||
+			document.webkitFullscreenEnabled ||
+			document.mozFullScreenEnabled ||
+			document.msFullscreenEnabled)) {
+			document.querySelector('#demoContainer').style.display = 'none';
+			document.querySelector('#noFullscreenErrorMessage').style.display = 'block';
+		}
 
-	</div>
+		window.requestAnimationFrame(function() {
+			document.getElementById('button1').addEventListener('click', function() {
+				pageFullscreen();
+			});
+			document.getElementById('picture1').addEventListener('click', function(event) {
+				eventTargetFullscreen(event)
+			});
+			document.getElementById('picture2').addEventListener('click', function(event) {
+				eventTargetFullscreen(event)
+			});
+			document.getElementById('picture3').addEventListener('click', function(event) {
+				eventTargetFullscreen(event)
+			});
+			document.getElementById('picture4').addEventListener('click', function(event) {
+				eventTargetFullscreen(event)
+			});
+		});
 
-	<script>
-    // Detect HTML5 full screen compatibility and alert the user if not
-    if (!(document.fullscreenEnabled || 
-        document.webkitFullscreenEnabled || 
-        document.mozFullScreenEnabled ||
-        document.msFullscreenEnabled)) {
-      document.querySelector('#demoContainer').style.display = 'none';
-      document.querySelector('#noFullscreenErrorMessage').style.display = 'block';
-    }
+		// Toggle full screen mode for an element
+		function toggleFullscreen(element) {
+			var fsapi = document.querySelector('#fsapi');
+			fsapi.target = element;
+			fsapi.toggleFullscreen();
+		}
+
+		// Toggle full screen mode for the whole page
+		function pageFullscreen() {
+			toggleFullscreen(document.documentElement);
+		}
+
+		// Toggle full screen mode for the event's target
+		function eventTargetFullscreen(event) {
+			toggleFullscreen(event.target);
+		}
 	</script>
 </body>
 </html>
