@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/Brightspace/fullscreen-api",
   "name": "fullscreen-api",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "scripts": {
     "lint": "npm run lint:wc && npm run lint:js",
     "lint:js": "eslint . --ext .js,.html demo/**/*.html",
