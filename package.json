@@ -15,9 +15,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Brightspace/fullscreen-api.git"
+    "url": "https://github.com/BrightspaceUILabs/fullscreen-api.git"
   },
-  "homepage": "https://github.com/Brightspace/fullscreen-api",
+  "homepage": "https://github.com/BrightspaceUILabs/fullscreen-api",
   "name": "@brightspace-ui-labs/fullscreen-api",
   "version": "3.0.1",
   "scripts": {
