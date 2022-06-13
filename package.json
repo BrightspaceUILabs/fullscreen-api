@@ -21,11 +21,8 @@
   "name": "@brightspace-ui-labs/fullscreen-api",
   "version": "3.0.1",
   "scripts": {
-    "lint": "npm run lint:wc && npm run lint:js",
-    "lint:js": "eslint . --ext .js,.html demo/**/*.html",
-    "lint:wc": "polymer lint",
+    "lint": "eslint . --ext .js,.html",
     "start": "polymer serve",
-    "test": "npm run lint"
   },
   "license": "UNLICENSED",
   "resolutions": {
@@ -42,16 +39,19 @@
     "@polymer/paper-icon-button": "^3.0.0-pre.18"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@babel/eslint-parser": "^7.18.2",
     "@babel/polyfill": "^7.0.0",
     "@polymer/iron-component-page": "^3.0.0-pre.18",
     "@polymer/iron-demo-helpers": "^3.0.0-pre.18",
     "@polymer/iron-icons": "^3.0.0-pre.18",
     "@polymer/paper-styles": "^3.0.0-pre.18",
     "@webcomponents/webcomponentsjs": "^2.2.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^4.15.0",
-    "eslint-config-brightspace": "^0.4.0",
-    "eslint-plugin-html": "^4.0.1",
+    "eslint": "^8.17.0",
+    "eslint-config-brightspace": "^0.17.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-lit": "^1.6.1",
+    "eslint-plugin-sort-class-members": "^1.14.1",
     "polymer-cli": "^1.9.1"
   },
   "files": [
