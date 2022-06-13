@@ -18,7 +18,7 @@
     "url": "https://github.com/Brightspace/fullscreen-api.git"
   },
   "homepage": "https://github.com/Brightspace/fullscreen-api",
-  "name": "@d2l/fullscreen-api",
+  "name": "@brightspace-ui-labs/fullscreen-api",
   "version": "3.0.1",
   "scripts": {
     "lint": "npm run lint:wc && npm run lint:js",
@@ -61,6 +61,6 @@
     "fullscreen-icons.js"
   ],
   "publishConfig": {
-    "registry": "https://d2l-569998014834.d.codeartifact.us-east-1.amazonaws.com/npm/private/"
+    "access": "public"
   }
 }

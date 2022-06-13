@@ -1,4 +1,4 @@
-# @d2l/fullscreen-api
+# @brightspace-ui-labs/fullscreen-api
 
 _A simple Polymer based Web Component wrapper for the HTML5 full screen API._
 
