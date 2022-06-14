@@ -40,10 +40,10 @@ Usage :
 @homepage https://github.com/vguillou/fullscreen-api
 @demo demo/index.html
 */
-import '../@polymer/polymer/polymer-legacy.js';
+import '@polymer/polymer/polymer-legacy.js';
 
 import { FullscreenBehavior } from './fullscreen-behavior.js';
-import { Polymer } from '../@polymer/polymer/lib/legacy/polymer-fn.js';
+import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
 Polymer({
 	is: 'fullscreen-api',
 
