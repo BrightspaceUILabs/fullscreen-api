@@ -50,9 +50,9 @@ style mixins and custom properties to style this button.
 @element fullscreen-icon-button
 @demo demo/index.html
 */
-import '../@polymer/polymer/polymer-legacy.js';
+import '@polymer/polymer/polymer-legacy.js';
 
-import '../@polymer/paper-icon-button/paper-icon-button.js';
+import '@polymer/paper-icon-button/paper-icon-button.js';
 import './fullscreen-icons.js';
 import { FullscreenBehavior } from './fullscreen-behavior.js';
 import { Polymer } from '../@polymer/polymer/lib/legacy/polymer-fn.js';

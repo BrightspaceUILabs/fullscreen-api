@@ -1,4 +1,4 @@
-import '../@polymer/polymer/polymer-legacy.js';
+import '@polymer/polymer/polymer-legacy.js';
 
 /**
 A simple Polymer `behavior` that wraps the HTML5 full screen API.
