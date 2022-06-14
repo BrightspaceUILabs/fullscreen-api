@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/BrightspaceUILabs/fullscreen-api",
   "name": "@brightspace-ui-labs/fullscreen-api",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "scripts": {
     "lint": "eslint . --ext .js,.html",
     "start": "polymer serve"
