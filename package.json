@@ -24,7 +24,7 @@
     "lint": "eslint . --ext .js,.html",
     "start": "polymer serve"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",
